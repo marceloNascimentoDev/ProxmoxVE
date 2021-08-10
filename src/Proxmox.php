@@ -106,6 +106,8 @@ class Proxmox
      */
     private function requestResource($actionPath, $params = [], $method = 'GET')
     {
+        $this->authToken = $this->login();
+
         $url = $this->getApiUrl() . $actionPath;
 
         $cookies = CookieJar::fromArray([
@@ -243,7 +245,6 @@ class Proxmox
         }
 
         $this->credentials = $credentials;
-        $this->authToken = $this->login();
     }
 
 
